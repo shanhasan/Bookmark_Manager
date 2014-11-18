@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'data_mapper'
 
 class MyApp < Sinatra::Base
 
