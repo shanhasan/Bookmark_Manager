@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User browses the ist of links" do
+feature "User browses the list of links" do
   
   before(:each) {
     Link.create(:url => "http://wwww.makersacademy.com",
