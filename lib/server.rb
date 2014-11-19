@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'data_mapper'
 
 require_relative '../lib/link.rb'
+require_relative '../lib/tag.rb'
 
 env = ENV["RACK_ENV"] || "development"
 
