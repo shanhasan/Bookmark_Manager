@@ -32,8 +32,8 @@ class MyApp < Sinatra::Base
   end
 
   get '/tags/:text' do
-    tag = Tags.first(:text => params[:text])
-    @links = tag ? tag.link : []
+    tag = Tag.first(:text => params[:text])
+    @links = tag ? tag.links : []
     erb :index
   end
 
