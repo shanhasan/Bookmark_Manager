@@ -21,7 +21,7 @@ class MyApp < Sinatra::Base
   end
 
   post '/links' do
-    url = param["url"]
+    url = params["url"]
     title = params["title"]
     Link.create(:url => url, :title => title)
     redirect to('/')
