@@ -3,6 +3,7 @@ require 'data_mapper'
 
 require_relative '../lib/link.rb'
 require_relative '../lib/tag.rb'
+require_relative '../lib/user.rb'
 
 env = ENV["RACK_ENV"] || "development"
 
@@ -36,6 +37,19 @@ class MyApp < Sinatra::Base
     @links = tag ? tag.links : []
     erb :index
   end
+
+  get '/users/new' do
+    erb :"users/new"
+  end
+
+  post '/users' do
+    User.create(:email => params[:email],
+                :password => params[:password])
+    redirect to('/')
+  end
+
+
+
 
     # start the server if ruby file executed directly
   run! if app_file == $0
