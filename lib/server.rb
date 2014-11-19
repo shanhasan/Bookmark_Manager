@@ -31,6 +31,12 @@ class MyApp < Sinatra::Base
     redirect to('/')
   end
 
+  get '/tags/:text' do
+    tag = Tags.first(:text => params[:text])
+    @links = tag ? tag.link : []
+    erb :index
+  end
+
     # start the server if ruby file executed directly
   run! if app_file == $0
 end
