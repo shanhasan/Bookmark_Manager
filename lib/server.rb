@@ -13,14 +13,14 @@ DataMapper.auto_upgrade!
 
 class MyApp < Sinatra::Base
 
-  set :views, Proc.new {File.join(root, "..", "views")} 
+  set :views, Proc.new{File.join(root, "..", "views")} 
 
   get '/' do
     @links = Link.all
     erb :index
   end
 
-  post '/' do
+  post '/links' do
     url = param["url"]
     title = params["title"]
     Link.create(:url => url, :title => title)
