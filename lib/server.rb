@@ -20,6 +20,13 @@ class MyApp < Sinatra::Base
     erb :index
   end
 
+  post '/' do
+    url = param["url"]
+    title = params["title"]
+    Link.create(:url => url, :title => title)
+    redirect to('/')
+  end
+
     # start the server if ruby file executed directly
   run! if app_file == $0
 end
