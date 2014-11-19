@@ -49,7 +49,9 @@ class MyApp < Sinatra::Base
       session[:user_id] = @user.id
       redirect to('/')
     else
+      flash[:notice] = "Sorry, your passwords didn't match"
       erb :"users/new"
+    end
   end
 
     # start the server if ruby file executed directly
