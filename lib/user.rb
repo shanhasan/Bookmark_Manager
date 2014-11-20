@@ -8,6 +8,7 @@ class User
   attr_accessor :password_confirmation
 
   validates_confirmation_of :password
+  validates_uniqueness_of :email
 
   property :id, Serial
   property :email, String
@@ -17,5 +18,6 @@ class User
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
+
 
 end

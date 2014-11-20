@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'data_mapper'
+require 'rack-flash'
 
 require_relative '../lib/link.rb'
 require_relative '../lib/tag.rb'
@@ -12,6 +13,7 @@ class MyApp < Sinatra::Base
 
   enable :sessions
   set :session_secret, 'super secret'
+  use Rack::Flash
 
   set :views, Proc.new{File.join(root, "views")} 
 
