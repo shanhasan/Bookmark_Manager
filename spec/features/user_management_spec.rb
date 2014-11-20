@@ -10,7 +10,13 @@ feature "when being logged out" do
   scenario "with a password that doesn't match" do
     expect { sign_up('a@a.com', 'pass', 'wrong') }.to change(User, :count).by(0)
     expect(current_path).to eq('/users')
-    expect(page).to have_content("Sorry, your passwords didn't match")
+    expect(page).to have_content("Password does not match the confirmation")
+  end
+
+  scenario "with an email that is already registered" do
+    expect {sign_up}.to change(User, :count).by(1)
+    expect {sign_up}.to change(User, :count).by(0)
+    expect(page).to have_content("Email is already taken")
   end
 
   def sign_up(email = "alice@example.com",
