@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'data_mapper'
 require 'rack-flash'
 require 'sinatra/partial'
+require 'rest-client'
 
 require_relative '../models/link.rb'
 require_relative '../models/tag.rb'

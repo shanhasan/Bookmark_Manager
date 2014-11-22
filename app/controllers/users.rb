@@ -27,7 +27,17 @@ class MyApp < Sinatra::Base
     user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
     # user.password_token_timestamp = Time.now
     user.save
-    'check your email'
+    send_simple_message(user.password_token)
+    erb :"users/password_sent"
+  end
+
+  def send_simple_message(password_token)
+    RestClient.post "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
+    "@api.mailgun.net/v2/samples.mailgun.org/messages",
+    :from => "Password Reset Manager <me@samples.mailgun.org>",
+    :to => "An excited user <#{params[:email]}>",
+    :subject => "Hello", 
+    :text => "Below is the link to rest your password: http://localhost:9292/users/reset_password/:password_token"
   end
 
   get '/users/reset_password/:token' do
