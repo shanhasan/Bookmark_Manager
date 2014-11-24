@@ -2,9 +2,9 @@ class MyApp < Sinatra::Base
 
   get '/sessions/new' do
       erb :"sessions/new"
-    end
+  end
 
-    post '/sessions' do
+  post '/sessions' do
     email, password = params[:email], params[:password]
     user = User.authenticate(email, password)
     if user
